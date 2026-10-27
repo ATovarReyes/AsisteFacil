@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AsisteFácil: sistema web sencillo para registrar y consultar asistencia.">
+  <title>AsisteFácil | Control de asistencia</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">A</div><div><strong>AsisteFácil</strong><span>Control de asistencia</span></div></div>
+      <div class="side-label">MENÚ PRINCIPAL</div>
+      <button class="nav-item active" data-view="dashboard"><span>▦</span> Resumen</button>
+      <button class="nav-item" data-view="attendance"><span>✓</span> Asistencia</button>
+      <div class="sidebar-note"><div class="note-icon">✦</div><strong>Organiza tu día</strong><p>Registra, consulta y mantén la asistencia en un solo lugar.</p></div>
+      <div class="sidebar-footer"><span class="status-dot"></span> Datos guardados en este navegador</div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div><p class="eyebrow">ESPACIO DE TRABAJO</p><h1 id="page-title">Resumen</h1></div>
+        <div class="today-pill"><span>◷</span><span id="today-label"></span></div>
+      </header>
+
+      <section id="dashboard-view" class="view">
+        <div class="welcome-card">
+          <div><p class="eyebrow light">REGISTRO DIGITAL</p><h2>¡Hola! Todo listo para comenzar.</h2><p>Controla la asistencia de forma sencilla y sin usar papel.</p><button class="primary-btn" id="go-register">+ Registrar asistencia</button></div>
+          <div class="welcome-art" aria-hidden="true"><div class="art-circle">✓</div><div class="art-card"><span>ASISTENCIA</span><strong>Organizada</strong><div class="art-lines"><i></i><i></i><i></i></div></div></div>
+        </div>
+        <div class="section-heading"><div><h2>Vista general</h2><p>Resumen de los registros de hoy</p></div></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-icon purple">▤</div><div><span>Registros de hoy</span><strong id="stat-total">0</strong><small>Personas registradas</small></div></article>
+          <article class="stat-card"><div class="stat-icon green">✓</div><div><span>Presentes</span><strong id="stat-present">0</strong><small>Asistencia confirmada</small></div></article>
+          <article class="stat-card"><div class="stat-icon orange">◷</div><div><span>Ausentes</span><strong id="stat-absent">0</strong><small>No asistieron</small></div></article>
+        </div>
+        <div class="section-heading recent-heading"><div><h2>Registros recientes</h2><p>Las últimas asistencias guardadas</p></div><button class="text-btn" id="see-all">Ver todos →</button></div>
+        <div class="table-card">
+          <div class="table-wrap"><table><thead><tr><th>PERSONA</th><th>FECHA</th><th>ESTADO</th></tr></thead><tbody id="recent-body"></tbody></table></div>
+          <div class="empty-state" id="recent-empty"><div class="empty-icon">▤</div><strong>Aún no hay registros</strong><p>Registra la primera asistencia para ver los datos aquí.</p><button class="secondary-btn" id="empty-register">Crear primer registro</button></div>
+        </div>
+      </section>
+
+      <section id="attendance-view" class="view hidden">
+        <div class="section-heading attendance-intro"><div><h2>Registrar asistencia</h2><p>Completa los datos para añadir una persona al listado.</p></div></div>
+        <div class="form-card">
+          <form id="attendance-form" novalidate>
+            <div class="form-grid">
+              <div class="field full"><label for="person-name">Nombre completo <span>*</span></label><input id="person-name" name="person-name" type="text" placeholder="Ej. María Fernanda López" maxlength="80" autocomplete="name"><small>Ingresa el nombre de la persona que deseas registrar.</small><p class="field-error" id="name-error" role="alert"></p></div>
+              <div class="field"><label for="attendance-date">Fecha <span>*</span></label><input id="attendance-date" name="attendance-date" type="date"></div>
+              <div class="field"><label for="attendance-status">Estado de asistencia <span>*</span></label><select id="attendance-status" name="attendance-status"><option value="Presente">Presente</option><option value="Ausente">Ausente</option></select></div>
+            </div>
+            <div class="form-actions"><button type="button" class="secondary-btn" id="clear-form">Limpiar</button><button type="submit" class="primary-btn">Guardar registro <span>→</span></button></div>
+            <div class="form-message" id="form-message" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+        <div class="section-heading list-heading"><div><h2>Listado de asistencia</h2><p>Consulta o elimina los registros guardados.</p></div><div class="search-box"><span>⌕</span><input id="search-input" type="search" placeholder="Buscar persona..." aria-label="Buscar persona"></div></div>
+        <div class="table-card">
+          <div class="table-wrap"><table><thead><tr><th>PERSONA</th><th>FECHA</th><th>ESTADO</th><th>ACCIÓN</th></tr></thead><tbody id="attendance-body"></tbody></table></div>
+          <div class="empty-state" id="list-empty"><div class="empty-icon">⌕</div><strong>No hay registros para mostrar</strong><p>Prueba a cambiar la búsqueda o crea un registro nuevo.</p></div>
+        </div>
+        <div class="privacy-note"><span>ⓘ</span> Los datos se almacenan localmente en este navegador. No se envían a un servidor.</div>
+      </section>
+      <footer class="footer">AsisteFácil · Proyecto académico de calidad de software <span>ISO/IEC 25010 · Usabilidad</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
